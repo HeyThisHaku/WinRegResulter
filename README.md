@@ -8,9 +8,14 @@ First run
 ```sh
 $ python3 install.py
 ```
-For Usage
+For CLI Usage
 ```sh
 $ python api [registry type] [registry path]
+```
+
+For GUI Usage
+```sh
+$ node index.js
 ```
 
 Registry type list:

@@ -84,6 +84,16 @@
 </head>
 
 <body>
+    <div class="alert alert-success" id="notif" style="visibility: hidden;" role="alert">
+        This is a success alert—check it out!
+    </div>
+    <div id="loading" style="visibility: hidden;">
+        <div style="z-index: 100; text-align: center; color: white;">Waiting...</div>
+        <img alt="Using loading animation on websites and apps: Examples and snippets to use  | by Alexander Gilmanov | UX Planet"
+            class="n3VNCb"
+            src="https://www.pinclipart.com/picdir/big/175-1750255_loading-gif-blue-transparent-download-animated-gif-loading.png"
+            data-noaft="1" style="z-index: 10; position: fixed;width: 100%; height: 100%; margin-top:0px">
+    </div>
     <img id="userPhoto" src="https://i.imgur.com/t8ZX9um.jpg" alt="User Photo">
     <div style="width: 100%; height: 24px;">
         <a href="#" id="typed"></a>
@@ -113,7 +123,7 @@
                 <div class="form-group">
                     <input name="registry-path" type="file" class="form-control-file" id="fileLoader">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button onclick="loading()" type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
@@ -128,10 +138,15 @@
         </div>
     </div>
     <script>
-        var loadFile = document.querySelector("#loadfile");
-        var about = document.querySelector("#about");
-        var checkResult = document.querySelector("#checkresult");
-
+        if (window.location.search != "") {
+            document.querySelector('#notif').style.visibility = 'visible';
+            setTimeout(() => {
+                document.querySelector('#notif').style.visibility = 'hidden';
+            }, 2000);
+        }
+        function loading() {
+            document.querySelector('#loading').style.visibility = 'visible';
+        }
         var typed = new Typed('#typed', {
             strings: ['Welcome to @Check data from windows registry!', 'Easier to use', 'And easier to check!'],
             typeSpeed: 40,
