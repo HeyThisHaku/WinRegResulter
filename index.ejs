@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <l<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.3/dist/pretty-print-json.css>
+        <script src=https://cdn.jsdelivr.net/npm/pretty-print-json@0.3/dist/pretty-print-json.min.js></script>
+        <link rel="stylesheet"
+            href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+            integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.js"></script>
+        <title>Win Reg Resulter!</title>
+        <style>
+            /* Style Settings */
+            @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+
+            :root {
+                --bgColor: #1C1C1C;
+                --accentColor: #E6E6E6;
+                --font: 'Karla', sans-serif;
+            }
+
+            body {
+                background-color: var(--bgColor);
+            }
+
+            #userPhoto {
+                width: 110px;
+                height: 110px;
+                display: block;
+                margin: 35px auto 20px;
+                border-radius: 50%;
+            }
+
+            #typed {
+                color: #bbb;
+                font-size: 1rem;
+                font-weight: 600;
+                line-height: 1.25;
+                display: block;
+                font-family: var(--font);
+                width: 100%;
+                text-align: center;
+                text-decoration: none;
+            }
+
+.json-key           { color: brown; }
+.json-string        { color: olive; }
+.json-number        { color: navy; }
+.json-boolean       { color: teal; }
+.json-null          { color: dimgray; }
+a.json-link         { color: purple; transition: all 400ms; }
+a.json-link:visited { color: slategray; }
+a.json-link:hover   { color: blueviolet; }
+a.json-link:active  { color: slategray; }
+
+
+            #links {
+                max-width: 675px;
+                width: auto;
+                display: block;
+                margin: 27px auto;
+            }
+
+            .link {
+                display: block;
+                background-color: var(--accentColor);
+                color: var(--bgColor);
+                font-family: var(--font);
+                text-align: center;
+                margin-bottom: 20px;
+                padding: 17px;
+                text-decoration: none;
+                width: 700px;
+                font-size: 1rem;
+                transition: all .25s cubic-bezier(.08, .59, .29, .99);
+                border: solid var(--accentColor) 2px;
+            }
+
+            .link:hover {
+                background-color: var(--bgColor);
+                color: var(--accentColor);
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
+            integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+            integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+            crossorigin="anonymous"></script>
+        <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+</head>
+
+<body>
+        <div class="alert alert-success" id="notif" style="visibility: hidden;" role="alert">
+            This is a success alert—check it out!
+        </div>
+        <div id="loading" style="visibility: hidden;">
+            <div style="z-index: 100; text-align: center; color: white;">Waiting...</div>
+            <img alt="Using loading animation on websites and apps: Examples and snippets to use  | by Alexander Gilmanov | UX Planet"
+                class="n3VNCb"
+                src="https://www.pinclipart.com/picdir/big/175-1750255_loading-gif-blue-transparent-download-animated-gif-loading.png"
+                data-noaft="1" style="z-index: 10; position: fixed;width: 100%; height: 100%; margin-top:0px">
+        </div>
+        <img id="userPhoto" src="https://i.imgur.com/t8ZX9um.jpg" alt="User Photo">
+        <div style="width: 100%; height: 24px;">
+            <a href="#" id="typed"></a>
+        </div>
+        <div id="links">
+            <button class="link" id="loadfile" href="#" type="button" data-toggle="collapse"
+                data-target="#collapseLoadFile" aria-expanded="false" aria-controls="collapseLoadFile">Load
+                file</button>
+
+            <button class="link" id="checkresult" href="#" type="button" data-toggle="collapse"
+                data-target="#collapseCheckResult" aria-expanded="false" aria-controls="collapseCheckResult">Check
+                result</button>
+
+            <button class="link" id="about" href="#" type="button" data-toggle="collapse" data-target="#collapseAbout"
+                aria-expanded="false" aria-controls="collapseAbout">About</button>
+        </div>
+        <div class="collapse m-5" id="collapseLoadFile">
+            <div class="card card-body">
+                <form method="POST" action="/upload" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="registryType">Registry Type</label>
+                        <select name="registry-type" class="form-control" id="registryType">
+                            <option value="NTUSER">NTUSER</option>
+                            <option value="SOFTWARE">SOFTWARE</option>
+                            <option value="SYSTEM">SYSTEM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input name="registry-path" type="file" class="form-control-file" id="fileLoader">
+                    </div>
+                    <button onclick="loading()" type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="collapse m-5" id="collapseAbout">
+            <div class="card card-body">
+                Ini About
+            </div>
+        </div>
+        <div class="collapse m-5" id="collapseCheckResult">
+            <div class="card card-body">
+                <pre style="font-size: 16px; font-weight: bold;" id=account></pre>
+            </div>
+        </div>
+        <script>
+            const data = JSON.parse(<%- msg %>)
+            const elem = document.getElementById('account');
+            elem.innerHTML = prettyPrintJson.toHtml(data,{linkUrls:true});
+            if (window.location.search != "") {
+                document.querySelector('#notif').style.visibility = 'visible';
+                setTimeout(() => {
+                    document.querySelector('#notif').style.visibility = 'hidden';
+                }, 2000);
+            }
+            function loading() {
+                document.querySelector('#loading').style.visibility = 'visible';
+            }
+            var typed = new Typed('#typed', {
+                strings: ['Welcome to @Check data from windows registry!', 'Easier to use', 'And easier to check!'],
+                typeSpeed: 40,
+                backSpeed: 10,
+                backDelay: 1000,
+                startDelay: 2000,
+                loop: true,
+
+            });
+
+        </script>
+</body>
+
+</html>
